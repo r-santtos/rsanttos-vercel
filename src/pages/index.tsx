@@ -3,8 +3,57 @@ import Head from 'next/head'
 import Image from 'next/image';
 import Images from '../componets/Images';
 import styles from '../../styles/Home.module.css'
+import { useEffect, useState } from 'react';
 
 const Home: NextPage = () => {
+  const newDateT = new Date();
+  const yearT = newDateT.getFullYear();
+  const monthT = newDateT.getMonth();
+  const daysT = newDateT.getDate();
+  
+  const date1 = new Date("1/1/2017");
+  const date2 = new Date(`"${monthT}/${daysT}/${yearT}"`);
+  const timeDiff = Math.abs(date2.getTime() - date1.getTime());
+  const diffDays = Math.ceil(timeDiff / (1000 * 3600 * 24)); 
+
+  /** STATES TIMES */
+  const [days, setDays] = useState(0);
+  const [hours, setHours] = useState(0);
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
+
+  const [porcOne, setPorcOne] = useState(0);
+  const [porcTwo, setPorcTwo] = useState(0);
+
+  const realTime = () => {
+    let countDownDate = new Date("Dec 31, 2022 23:59:59").getTime();
+    let countDownDateStart = new Date("Dec 31, 2021 23:59:59").getTime();
+    
+    let totalDayYear = countDownDate - countDownDateStart
+    let totalDay = Math.floor(totalDayYear / (1000 * 60 * 60 *24)); 
+    let porcDay = 100 / totalDay;
+    let now = new Date().getTime();
+    let distance = countDownDate - now;
+  
+    // Time calculations for days, hours, minutes and seconds
+    let days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    setPorcOne(days * porcDay); 
+    setPorcTwo(Math.round((100 / 60)*seconds)); 
+
+    setDays(days);
+    setHours(hours);
+    setMinutes(minutes);
+    setSeconds(seconds);
+
+    return clearInterval();
+  }
+
+  useEffect(() => {setInterval(realTime)},[])
+
   return (
     <div>
       <Head>
@@ -44,9 +93,13 @@ const Home: NextPage = () => {
             <div className={`${styles.container} ${styles.timeBar}`}>
               <p>Dias como programador</p>
               <span className={`${styles.container} ${styles.lineOne}`}>
-                <span id={styles.lineTwos} className={`${styles.container} ${styles.lineTwo}`}></span>
+                <span
+                  style={{width: `${porcOne}%`}}
+                  id={styles.lineTwos}
+                  className={`${styles.container} ${styles.lineTwo}`}>
+                  </span>
               </span>
-              <p id={styles.dayss}>000</p>
+              <p id={styles.dayss}>{diffDays}</p>
             </div>
           </div>
         </section>
@@ -61,7 +114,7 @@ const Home: NextPage = () => {
               <div className={`${styles.container} ${styles.boxRight}`}>
                 {/** <!-- DAYS --> */}
                 <div className={`${styles.container} ${styles.number}`}>
-                  <p id={styles.days}>000</p>
+                  <p id={styles.days}>{days}</p>
                   <p>dias</p>
                 </div>
 
@@ -69,7 +122,7 @@ const Home: NextPage = () => {
 
                 {/** HOURS */}
                 <div className={`${styles.container} ${styles.number}`}>
-                  <p id={styles.hours}>00</p>
+                  <p id={styles.hours}>{hours}</p>
                   <p>horas</p>
                 </div>
 
@@ -77,7 +130,7 @@ const Home: NextPage = () => {
 
                 {/** MINUTES */}
                 <div className={`${styles.container} ${styles.number}`}>
-                  <p id={styles.minutes}>00</p>
+                  <p id={styles.minutes}>{minutes}</p>
                   <p>minutos</p>
                 </div>
 
@@ -85,7 +138,7 @@ const Home: NextPage = () => {
 
                 {/** SECONDS */}
                 <div className={`${styles.container} ${styles.number}`}>
-                  <p id={styles.seconds}>00</p>
+                  <p id={styles.seconds}>{seconds}</p>
                   <p>segundos</p>
                 </div>
               </div>
@@ -94,9 +147,13 @@ const Home: NextPage = () => {
               <div className={`${styles.container} ${styles.timeBar}`}>
                 <p>Regressiva</p>
                 <span className={`${styles.container} ${styles.lineOne}`}>
-                  <span id={styles.lineTwo} className={`${styles.container} ${styles.lineTwo}`}></span>
+                  <span 
+                    style={{width: `${porcTwo}%`}}
+                    id={styles.lineTwo} 
+                    className={`${styles.container} ${styles.lineTwo}`}
+                  ></span>
                 </span>
-                <p>2022</p>
+                <p>{yearT}</p>
               </div>
             </div>
           </div>
@@ -104,7 +161,7 @@ const Home: NextPage = () => {
       </main>
 
       <footer id={styles.footer} className={styles.container}>
-        <p>ricardo santtos&copy;2022</p>
+        <p>ricardo santtos&copy;{yearT}</p>
       </footer>
     </div>
   )
