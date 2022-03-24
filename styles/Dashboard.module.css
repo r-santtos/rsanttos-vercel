@@ -1,0 +1,34 @@
+#main {
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  background-color: #100e10;
+}
+#aside, #body {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+#aside {
+  max-width: 250px;
+  background-color: red;
+}
+#body {
+  background-color: aqua;
+  position: fixed;
+  overflow: auto;
+}
+#body .header {
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: antiquewhite;
+  position: fixed;
+}
+#body .main {
+  height: 100%;
+  background-color: royalblue;
+}
