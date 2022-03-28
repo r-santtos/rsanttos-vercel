@@ -67,7 +67,7 @@ const Home: NextPage = () => {
         <section id={styles.home} className={styles.container}>
           <Image src={Images.Profile} alt="profile" className={styles.img} width={80} height={80}/>
           <h2>rsanttos</h2>
-          <a href="https://www.instagram.com/holy_programmer/" target="_blank" rel="noopener noreferrer">@holy_programmer</a>
+          <a href="https://www.instagram.com/rsanttos89/" target="_blank" rel="noopener noreferrer">programador mobile</a>
 
           {/** SOCIAL CONTAINER */}
           <div className={`${styles.container} ${styles.social}`}>
