@@ -54,6 +54,11 @@ const Home: NextPage = () => {
 
   useEffect(() => {setInterval(realTime)},[])
 
+  useEffect(() => {
+    const src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5323896371528279"
+    const crossorigin="anonymous"
+  },[])
+
   return (
     <div>
       <Head>
