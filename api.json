@@ -1,11 +1,9 @@
-[
   {
     "id": "",
     "name_company": "",
     "office": "",
     "descriptions": "",
     "status_vacancy": "1",
-
     "requirements": [
       "* Ensino Médio;",
     ],
@@ -15,20 +13,16 @@
     "salary": [
       "* Ensino Médio;",
     ]
-
     "shipping_method": " ",
     "email_company": " ",
     "email_subject": " ",
     "phone": " ",
     "url_site": " ",
-
     "starting_day": "10",
     "starting_month": "5",
     "starting_year": "2022",
-
     "reg_date": {
       "nanoseconds": 0,
       "seconds": 1652190000,
     },
   },
-]
